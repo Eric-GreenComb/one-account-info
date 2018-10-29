@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"math/big"
 	"net/http"
 	"strconv"
@@ -29,6 +30,8 @@ func GetEtherBalance(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"errcode": 1, "msg": err.Error()})
 		return
 	}
+
+	fmt.Println(_ethCoin)
 
 	_wei, _ := StringToWei(_ethCoin)
 
@@ -63,13 +66,19 @@ func GetTokenBalance(c *gin.Context) {
 
 // StringToWei StringToWei
 func StringToWei(hex string) (*big.Int, bool) {
-	n := new(big.Int)
 	_str := Remove0x(hex)
+	n := new(big.Int)
+	if len(_str) == 0 || _str == "0" {
+		return n, true
+	}
 	return n.SetString(_str, 16)
 }
 
 // Wei2Eth Wei2Eth
 func Wei2Eth(wei *big.Int, quantity int64) (decimal.Decimal, error) {
+	if wei.Uint64() == 0 {
+		return decimal.NewFromFloat(0), nil
+	}
 	_wei, err := decimal.NewFromString(wei.String())
 	if err != nil {
 		return decimal.NewFromFloat(0), err

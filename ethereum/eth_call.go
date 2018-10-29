@@ -2,7 +2,6 @@ package ethereum
 
 import (
 	"encoding/hex"
-	"fmt"
 
 	"github.com/ethereum/go-ethereum"
 	ethcommon "github.com/ethereum/go-ethereum/common"
@@ -15,8 +14,6 @@ func GetBalanceOfAddress(conAddr, addr string) (string, error) {
 	_client := Clients.Eth
 
 	_method := crypto.Keccak256([]byte("balanceOf(address)"))[:4]
-
-	fmt.Println(hex.EncodeToString(_method))
 
 	_addr := PadLeft0(addr)
 

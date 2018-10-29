@@ -32,14 +32,28 @@ Content-Type: application/json
     "desc":"this is sinoc token"
 }
 
-### GetBalance /balance/eth/:code
-GET http://localhost:8080/balance/eth/btc
+### /acount/create
+POST http://localhost:8080/acount/create
 Content-Type: application/json
+
+{
+    "code":"zero",
+    "account":"0x762009cd5DcAbb5A125008d70f5efdbdfF2aa781",
+    "type":0,
+    "address":"",
+    "decimal":1000000000000000000,
+    "desc":"this is a desc"
+}
+
+### GetTokenBalance /balance/eth/:code
+GET http://localhost:8080/balance/eth/zero
+Content-Type: application/json
+
 {
 }
 
 ### GetTokenBalance /balance/token/:code
-GET http://localhost:8080/balance/token/sinoc
+GET http://localhost:8080/balance/token/btc
 Content-Type: application/json
 
 {
