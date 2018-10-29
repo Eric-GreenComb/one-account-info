@@ -1,0 +1,15 @@
+{
+    "apps": [{
+        "name": "account-info",
+        "cwd": "./",
+        "script": "start-account-info.sh",
+        "exec_interpreter": "bash",
+        "min_uptime": "60s",
+        "max_restarts": 30,
+        "exec_mode": "fork",
+        "error_file": "./tmp/account-info-err.log",
+        "out_file": "./tmp/account-info-out.log",
+        "pid_file": "./tmp/account-info_linked.pid",
+        "watch": false
+    }]
+}

@@ -1,0 +1,27 @@
+
+###health
+GET http://localhost:8080/health
+Content-Type: application/json
+
+{
+}
+
+###health
+POST http://localhost:8080/acount/create
+Content-Type: application/json
+
+{
+    "code":"btc",
+    "account":"0x762009cd5DcAbb5A125008d70f5efdbdfF2aa782",
+    "type":0,
+    "address":"",
+    "decimal":1000000000000000000,
+    "desc":"this is a desc"
+}
+
+### GetBalance /balance/eth/:code
+GET http://localhost:8080/balance/eth/btc
+Content-Type: application/json
+
+{
+}
