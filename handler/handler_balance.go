@@ -39,7 +39,26 @@ func GetEtherBalance(c *gin.Context) {
 
 // GetTokenBalance GetTokenBalance
 func GetTokenBalance(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"errcode": 0, "msg": 0})
+
+	_code := c.Params.ByName("code")
+
+	_account, err := persist.GetPersist().AccountInfo(_code)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"errcode": 1, "msg": "get account error"})
+		return
+	}
+
+	_token, err := ethereum.GetBalanceOfAddress(_account.Address, Remove0x(_account.Account))
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"errcode": 1, "msg": err.Error()})
+		return
+	}
+
+	_wei, _ := StringToWei(_token)
+
+	_eth, _ := Wei2Eth(_wei, _account.Decimal)
+
+	c.JSON(http.StatusOK, gin.H{"errcode": 0, "wei": _wei.String(), "eth": _eth.String()})
 }
 
 // StringToWei StringToWei

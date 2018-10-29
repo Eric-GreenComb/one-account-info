@@ -6,7 +6,7 @@ Content-Type: application/json
 {
 }
 
-###health
+### /acount/create
 POST http://localhost:8080/acount/create
 Content-Type: application/json
 
@@ -19,8 +19,27 @@ Content-Type: application/json
     "desc":"this is a desc"
 }
 
+### /acount/create
+POST http://localhost:8080/acount/create
+Content-Type: application/json
+
+{
+    "code":"sinoc",
+    "account":"0x47e8426dba3eddbb3cec855a2f3e5db7eaaf5109",
+    "type":1,
+    "address":"0xcba8162778e6a3eba60e1cf7c012b327340bd05d",
+    "decimal":1000000000000000000,
+    "desc":"this is sinoc token"
+}
+
 ### GetBalance /balance/eth/:code
 GET http://localhost:8080/balance/eth/btc
+Content-Type: application/json
+{
+}
+
+### GetTokenBalance /balance/token/:code
+GET http://localhost:8080/balance/token/sinoc
 Content-Type: application/json
 
 {
